@@ -8,5 +8,5 @@
 ## Documentation
 We added a new material for volumetric objects and new commands for the test files `smoke` and `density`. `smoke` is a boolean that tells us whether or not the object is volumetric. `density` is the density of the material. We attempted to render the Cornell Box scene but with the two objects in the room as smoke. Unfortunately, we had trouble reconciling our implementation of next event estimation and Russian roulette with volumetric scattering. Thus, our rendered scenes fail to show the objects as smoke, and instead, render them as black and white.
 
-What we plan to achieve can be seen in the image below:
-![aaaa](https://x.com/i/status/1566126155484336128)
+What we plan to achieve can be seen in the link below:
+[aaaa](https://x.com/i/status/1566126155484336128)
