@@ -21,12 +21,12 @@ Next, we implemented basic caustics resulting in this image:
 
 *Notice the caustic below the sphere*
 
-Before fully implementing homogeneous volumetric scattering, we started with just implementing absorption to simulate the attenuation of light as the photons are absorbed while crossing through the volume. We used the Beer-Lambert law to make this possible. This gave the following images of the dragon:
+Before fully implementing homogeneous volumetric scattering, we started with just implementing absorption to simulate the attenuation of light as the photons are absorbed while crossing through the volume. We used the Beer-Lambert law and forward ray marching to make this possible. This gave the following images of the dragon:
 
 <img src="images/dragonSmoke1.png" height="375">
 <img src="images/dragonSmoke6.png" height="375">
 
-Next, we added the scattering effects via ray marching. We had several issues with shadows and
+Next, we added the scattering effects via forward ray marching. We had several issues with shadows due to the direct lighting calculation for next event estimation. We could not find much information about how to properly handle participating media in the direct lighting calculations. We eventually came up with a brute force solution that skips transmitive geometry by continuing to shoot the promary ray in the same direction until it does not intersect with anything that is not a solid.
 
 <img src="images/cornellSmoke1.png" height="400">
 <img src="images/cornellSmokeSphere1.png" height="400">
@@ -40,12 +40,16 @@ Use the below command to enable volume rendering. To disable volume rendering, s
 
     volume 1
 
-To set the absorption and scatter coefficents, utilize these commands:
+To set the absorption and scatter coefficent, utilize these commands:
 
-    absorption x y z
-    scatter x y z
+    absorption r g b
+    scatter r g b
+
+To make the volume monochromatic, ensure the color channels are the same value for absorption and scatter.
 
 ## Potential Improvements
+
+There are some mistakes we were not able to completely resolve. We struggled with nested volumes and could not finish the solution in time.
 
 There are a multitude of additional features that we would add given more time. For example, heterogeneous volumes would allow us to model smoke and clouds and other participating media that do not have constant properties throughout. This involves an extinction coefficient that varies throughout the medium rather than being constant.
 
