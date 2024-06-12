@@ -8,11 +8,48 @@ When tracing rays through our scene, we typically follow the ray until it collid
 
 As photons travel through a participating medium, these light particles often collide with the microscopic particles that make up the medium. This results in 3 key effects: in-scattering, out-scattering, and absorption. The amount of scattering is either homogeneous throughout due to consistent properties of the participating media, or it can be heterogeneous and different throughout. In our final project, we simulate these effects to produce images featuring single-scattering homogeneous volumes.
 
+## Implementation
+
+We first started by implmenting glass objects. Although this is not a part of the current iteration of the code, it was stated as a prerequisite to volume scattering and helped us understand how light could pass through objects and be refracted. This gave us these images:
+
+<img src="images/cornellGlass7.png" height="400">
+<img src="images/dragonGlassPurple.png" height="400">
+
+Next, we implemented basic caustics resulting in this image:
+
+<img src="images/cornellGlassCaustics.png" height="400">
+
+*Notice the caustic below the sphere*
+
+Before fully implementing homogeneous volumetric scattering, we started with just implementing absorption to simulate the attenuation of light as the photons are absorbed while crossing through the volume. We used the Beer-Lambert law to make this possible. This gave the following images of the dragon:
+
+<img src="images/dragonSmoke1.png" height="375">
+<img src="images/dragonSmoke6.png" height="375">
+
+Next, we added the scattering effects via ray marching. We had several issues with shadows and
+
+<img src="images/cornellSmoke1.png" height="400">
+<img src="images/cornellSmokeSphere1.png" height="400">
+<img src="images/cornellSmokeSphere2.png" height="400">
+
 ## Documentation
+
+The below commands are to be added to the `.test` files to enable and configure volume scattering.
+
+Use the below command to enable volume rendering. To disable volume rendering, set it back to 0.
+
+    volume 1
+
+To set the absorption and scatter coefficents, utilize these commands:
+
+    absorption x y z
+    scatter x y z
 
 ## Potential Improvements
 
-Things we would add if more time: heterogeneous volumes, voxel grids, multiple scattering --> global illumination, stochastic-based/tracking, subsurface scattering
+There are a multitude of additional features that we would add given more time. For example, heterogeneous volumes would allow us to model smoke and clouds and other participating media that do not have constant properties throughout. This involves an extinction coefficient that varies throughout the medium rather than being constant.
+
+Multiple scattering would be another possible advancement to this project. Rather than have photons bounce just once through the participating medium, multiple scattering involves recursively tracing these light particles through the medium as it bounces many times. While this would take longer to run, it would result in global illumination in the volume. Some other possible improvements and features are voxel grids, tracking rather than ray marching, and subsurface scattering.
 
 ## References
 
